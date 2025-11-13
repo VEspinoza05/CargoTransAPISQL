@@ -12,6 +12,7 @@ namespace CargoTransAPISQL.Models
         public string Status { get; set; } = string.Empty;
         public DateTime ReceptionDate { get; set; }
         public DateTime DeliveryDate { get; set; }
-        public ICollection<PackageVehicleModel> PackageVehicles { get; set; } = new List<PackageVehicleModel>();
+        public int VehicleId { get; set; }
+        public VehicleModel Vehicle { get; set; } = null!;
     }
 }

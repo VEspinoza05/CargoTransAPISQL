@@ -12,7 +12,7 @@ namespace CargoTransAPISQL.Models
         public string Brand { get; set; } = string.Empty;
         public string Model { get; set; } = string.Empty;
         public string Serial { get; set; } = string.Empty;
-        public ICollection<PackageVehicleModel> PackageVehicles { get; set; } = new List<PackageVehicleModel>();
+        public ICollection<PackageModel> Packages { get; set; } = new List<PackageModel>();
         public EmployeeModel? Driver { get; set; } = null!;
     }
 }

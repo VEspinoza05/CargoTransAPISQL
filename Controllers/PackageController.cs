@@ -1,5 +1,6 @@
 using CargoTransAPISQL.Models;
 using CargoTransAPISQL.Repositories.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CargoTransAPISQL.Controllers
@@ -55,5 +56,13 @@ namespace CargoTransAPISQL.Controllers
             await _repo.DeleteAsync(id);
             return NoContent();
         }
+
+        [Authorize(Roles = "Director De RR.HH")]
+        [HttpGet("A")]
+        public IActionResult TestRoles()
+        {
+            return Ok("Hola mundo");
+        }
+
     }
 }

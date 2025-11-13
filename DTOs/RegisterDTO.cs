@@ -1,20 +1,15 @@
-namespace CargoTransAPISQL.Models
+namespace CargoTransAPISQL.DTOs
 {
-    public class EmployeeModel
+    public class RegisterDTO
     {
-        public int Id { get; set; }
         public string FirstName { get; set; } = string.Empty;
         public string LastName { get; set; } = string.Empty;
         public int RoleId { get; set; }
-        public DateTime StartDate { get; set; }
         public string Status { get; set; } = string.Empty;
         public string Phone { get; set; } = string.Empty;
         public string ContractType { get; set; } = string.Empty;
         public string Shift { get; set; } = string.Empty;
         public string Email { get; set; } = string.Empty;
-        public string PasswordHash { get; set; } = string.Empty;
-        public ICollection<VehicleModel> Vehicles { get; set; } = new List<VehicleModel>();
-        public ICollection<PurchaseModel> Purchases { get; set; } = new List<PurchaseModel>();
-        public RoleModel Role { get; set; } = null!;
+        public string Password { get; set; } = string.Empty;
     }
 }

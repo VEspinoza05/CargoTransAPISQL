@@ -35,9 +35,15 @@ public class AuthService
         var employee = new EmployeeModel
         {
             FirstName = dto.FirstName,
+            LastName = dto.LastName,
+            RoleId = dto.RoleId,
+            Status = dto.Status,
+            Phone = dto.Phone,
+            ContractType = dto.ContractType,
+            Shift = dto.Shift,
             Email = dto.Email,
             PasswordHash = BCrypt.Net.BCrypt.HashPassword(dto.Password),
-            RoleId = dto.RoleId
+            StartDate = DateTime.Now,
         };
 
         await _repo.AddAsync(employee);

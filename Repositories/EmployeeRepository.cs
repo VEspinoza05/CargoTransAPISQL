@@ -25,5 +25,71 @@ namespace CargoTransAPISQL.Repositories
             _context.Employees.Add(employee);
             await _context.SaveChangesAsync();
         }
+
+        public async Task<IEnumerable<EmployeeModel>> GetAllAsync()
+        {
+            return await _context.Employees
+                .Include(e => e.Role)
+                .ToListAsync();
+        }
+
+        public async Task<EmployeeModel?> GetByIdAsync(int id)
+        {
+            return await _context.Employees
+                .Include(e => e.Role)
+                .FirstOrDefaultAsync(e => e.Id == id);
+        }
+
+        public async Task<bool> UpdateAsync(EmployeeModel employeeModel)
+        {
+            var existingEmployee = await _context.Employees.FindAsync(employeeModel.Id);
+
+            if(existingEmployee == null)
+            {
+                return false;
+            }
+
+            existingEmployee.FirstName = employeeModel.FirstName;
+            existingEmployee.LastName = employeeModel.LastName;
+            existingEmployee.RoleId = employeeModel.RoleId;
+            existingEmployee.Status = employeeModel.Status;
+            existingEmployee.ContractType = employeeModel.ContractType;
+            existingEmployee.Shift = employeeModel.Shift;
+            existingEmployee.Email = employeeModel.Email;
+            
+            await _context.SaveChangesAsync();
+
+            return true;
+        }
+
+        public async Task<bool> UpdatePasswordAsync(int employeeId, string hashedPassword)
+        {
+            var existingEmployee = await _context.Employees.FindAsync(employeeId);
+
+            if(existingEmployee == null)
+            {
+                return false;
+            }
+
+            existingEmployee.PasswordHash = hashedPassword;
+
+            await _context.SaveChangesAsync();
+
+            return true;
+        }
+
+        public async Task<bool> DeleteAsync(int id)
+        {
+            var employeeModel = await _context.Employees.FirstOrDefaultAsync(x => x.Id == id);
+
+            if(employeeModel == null)
+            {
+                return false;
+            }
+
+            _context.Employees.Remove(employeeModel);
+            await _context.SaveChangesAsync();
+            return true;
+        }
     }
 }

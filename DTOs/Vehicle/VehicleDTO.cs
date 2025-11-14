@@ -1,6 +1,6 @@
-namespace CargoTransAPISQL.Models
+namespace CargoTransAPISQL.DTOs.Vehicle
 {
-    public class VehicleModel
+    public class VehicleDTO
     {
         public int Id { get; set; }
         public string VehicleLicensePlate { get; set; } = string.Empty;
@@ -12,7 +12,5 @@ namespace CargoTransAPISQL.Models
         public string Brand { get; set; } = string.Empty;
         public string Model { get; set; } = string.Empty;
         public string Serial { get; set; } = string.Empty;
-        public ICollection<PackageModel> Packages { get; set; } = new List<PackageModel>();
-        public EmployeeModel? Driver { get; set; }
     }
 }

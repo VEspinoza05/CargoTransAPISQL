@@ -21,7 +21,8 @@ namespace CargoTransAPISQL.Data
             modelBuilder.Entity<EmployeeModel>()
                 .HasMany(e => e.Vehicles)
                 .WithOne(e => e.Driver)
-                .HasForeignKey(e => e.DriverId);
+                .HasForeignKey(e => e.DriverId)
+                .IsRequired(false);
 
             modelBuilder.Entity<EmployeeModel>()
                 .HasMany(e => e.Purchases)

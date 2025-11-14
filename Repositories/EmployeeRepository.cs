@@ -91,5 +91,22 @@ namespace CargoTransAPISQL.Repositories
             await _context.SaveChangesAsync();
             return true;
         }
+
+        public async Task<bool> Exists(int? id)
+        {
+            if(id == null)
+                return false;
+
+            var result = await _context.Employees.FirstOrDefaultAsync(e => e.Id == id);
+
+            if(result == null)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
     }
 }

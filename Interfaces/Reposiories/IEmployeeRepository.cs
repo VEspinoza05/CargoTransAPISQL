@@ -11,5 +11,6 @@ namespace CargoTransAPISQL.Interfaces.Reposiories
         Task<bool> UpdateAsync(EmployeeModel employeeModel);
         Task<bool> DeleteAsync(int id);
         Task<bool> UpdatePasswordAsync(int employeeId, string hashedPassword);
+        Task<bool> Exists(int? id);
     }
 }

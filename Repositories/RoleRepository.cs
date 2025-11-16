@@ -18,5 +18,10 @@ namespace CargoTransAPISQL.Repositories
         {
             return await _context.Roles.ToListAsync();
         }
+
+        public async Task<RoleModel?> GetByIdAsync(int id)
+        {
+            return await _context.Roles.FindAsync(id);
+        }
     }
 }

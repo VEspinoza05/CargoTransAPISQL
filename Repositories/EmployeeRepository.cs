@@ -20,10 +20,11 @@ namespace CargoTransAPISQL.Repositories
                 .FirstOrDefaultAsync(u => u.Email == email);
         }
 
-        public async Task AddAsync(EmployeeModel employee)
+        public async Task<EmployeeModel> AddAsync(EmployeeModel employee)
         {
             _context.Employees.Add(employee);
             await _context.SaveChangesAsync();
+            return employee;
         }
 
         public async Task<IEnumerable<EmployeeModel>> GetAllAsync()

@@ -5,7 +5,7 @@ namespace CargoTransAPISQL.Interfaces.Reposiories
     public interface IEmployeeRepository
     {
         Task<EmployeeModel?> GetByEmailAsync(string email);
-        Task AddAsync(EmployeeModel employee);
+        Task<EmployeeModel> AddAsync(EmployeeModel employee);
         Task<IEnumerable<EmployeeModel>> GetAllAsync();
         Task<EmployeeModel?> GetByIdAsync(int id);
         Task<bool> UpdateAsync(EmployeeModel employeeModel);

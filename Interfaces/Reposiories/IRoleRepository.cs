@@ -5,5 +5,6 @@ namespace CargoTransAPISQL.Interfaces
     public interface IRoleRepository
     {
         Task<IEnumerable<RoleModel>> GetAllAsync();
+        Task<RoleModel?> GetByIdAsync(int id);
     }
 }

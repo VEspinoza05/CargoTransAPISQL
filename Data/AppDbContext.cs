@@ -44,7 +44,6 @@ namespace CargoTransAPISQL.Data
                 .WithMany(e => e.Employees)
                 .HasForeignKey(e => e.RoleId);
 
-
             // Roles
             modelBuilder.Entity<RoleModel>().HasData(
                 new RoleModel { Id = 1, Name = "Director Financiero" },
@@ -53,7 +52,8 @@ namespace CargoTransAPISQL.Data
                 new RoleModel { Id = 4, Name = "CEO" },
                 new RoleModel { Id = 5, Name = "Director Operativo" },
                 new RoleModel { Id = 6, Name = "Gerente De Sucursal" },
-                new RoleModel { Id = 7, Name = "Encargado De Turno " }
+                new RoleModel { Id = 7, Name = "Encargado De Turno " },
+                new RoleModel { Id = 8, Name = "Conductor" }
             );
         }
     }

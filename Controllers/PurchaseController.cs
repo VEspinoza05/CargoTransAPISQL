@@ -64,7 +64,7 @@ namespace CargoTransAPISQL.Controllers
             }
             else
             {
-                return Ok(purchase.ToPurchaseDTO());
+                return Ok(result.ToPurchaseDTO());
             }
         }
 

@@ -39,13 +39,13 @@ namespace CargoTransAPISQL.Repositories
                 .FirstOrDefaultAsync(p => p.Id == purchase.Id);  ;
         }
 
-        public async Task<bool> UpdateAsync(PurchaseModel purchaseModel)
+        public async Task<PurchaseModel?> UpdateAsync(PurchaseModel purchaseModel)
         {
             var existingPurchase = await _context.Purchases.FindAsync(purchaseModel.Id);
 
             if(existingPurchase == null)
             {
-                return false;
+                return null;
             }
 
             //TODO: Add existingPurchase with its properties
@@ -58,7 +58,11 @@ namespace CargoTransAPISQL.Repositories
 
             await _context.SaveChangesAsync();
 
-            return true;
+            var updatedPurchase = await _context.Purchases
+                .Include(p => p.Supplier)
+                .FirstOrDefaultAsync(p => p.Id == purchaseModel.Id);  ;
+
+            return updatedPurchase;
         }
 
         public async Task<bool> DeleteAsync(int id)

@@ -16,19 +16,27 @@ namespace CargoTransAPISQL.Repositories
 
         public async Task<IEnumerable<PurchaseModel>> GetAllAsync()
         {
-            return await _context.Purchases.ToListAsync();
+            return await _context.Purchases
+                .Include(p => p.Supplier)
+                .ToListAsync();
         }
 
         public async Task<PurchaseModel?> GetByIdAsync(int id)
         {
-            return await _context.Purchases.FindAsync(id);
+            return await _context.Purchases
+                .Include(p => p.Supplier)
+                .FirstOrDefaultAsync(p => p.Id == id);  
         }
 
-        public async Task<PurchaseModel> AddAsync(PurchaseModel purchase)
+        public async Task<PurchaseModel?> AddAsync(PurchaseModel purchase)
         {
             _context.Purchases.Add(purchase);
             await _context.SaveChangesAsync();
-            return purchase;
+
+            
+            return await _context.Purchases
+                .Include(p => p.Supplier)
+                .FirstOrDefaultAsync(p => p.Id == purchase.Id);  ;
         }
 
         public async Task<bool> UpdateAsync(PurchaseModel purchaseModel)

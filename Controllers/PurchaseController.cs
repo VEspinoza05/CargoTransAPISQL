@@ -42,6 +42,12 @@ namespace CargoTransAPISQL.Controllers
             var purchase = newPurchaseDTO.ToPurchaseFromNewDTO();
             purchase.RequestDate = DateTime.Now;
             var newPurchase = await _repo.AddAsync(purchase);
+
+            if(newPurchase == null)
+            {
+                return BadRequest();
+            }
+
             return CreatedAtAction(nameof(GetById), new { id = newPurchase.Id }, newPurchase.ToPurchaseDTO());
         }
 
@@ -52,13 +58,13 @@ namespace CargoTransAPISQL.Controllers
 
             var result = await _repo.UpdateAsync(purchase);
 
-            if(result == false)
+            if(result == null)
             {
                 return NotFound("Purchase not found");
             }
             else
             {
-                return Ok("Purchase updated successfully");
+                return Ok(purchase.ToPurchaseDTO());
             }
         }
 

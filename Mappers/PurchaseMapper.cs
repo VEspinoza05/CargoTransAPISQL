@@ -11,6 +11,7 @@ namespace CargoTransAPISQL.Mappers
             {
                 Id = purchaseModel.Id,
                 SupplierId = purchaseModel.SupplierId,
+                Supplier = purchaseModel.Supplier.ToSupplierDTO(),
                 RequestDate = purchaseModel.RequestDate,
                 ProductName = purchaseModel.ProductName,
                 ProductDescription = purchaseModel.ProductDescription,

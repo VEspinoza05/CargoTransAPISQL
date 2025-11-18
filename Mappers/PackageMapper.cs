@@ -24,5 +24,25 @@ namespace CargoTransAPISQL.Mappers
             };
         }
 
+        public static PackageDTO ToPackageDTO(this PackageModel packageModel)
+        {
+            return new PackageDTO()
+            {
+                Id = packageModel.Id,
+                Sender = packageModel.Sender,
+                Recipient = packageModel.Recipient,
+                Weight = packageModel.Weight,
+                Dimensions = packageModel.Dimensions,
+                ContentType = packageModel.ContentType,
+                Observations = packageModel.Observations,
+                Status = packageModel.Status,
+                ReceptionDate = packageModel.ReceptionDate,
+                LatitudeDestination = packageModel.LatitudeDestination,
+                LongitudeDestination = packageModel.LongitudeDestination,
+                VehicleId = packageModel.VehicleId,
+                VehicleData = packageModel.Vehicle?.ToVehicleDTO(),
+                DeliveryDate = packageModel.DeliveryDate
+            };
+        }
     }
 }

@@ -2,6 +2,7 @@ using CargoTransAPISQL.Models;
 using CargoTransAPISQL.Repositories.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using CargoTransAPISQL.Mappers;
 
 namespace CargoTransAPISQL.Controllers
 {
@@ -20,7 +21,8 @@ namespace CargoTransAPISQL.Controllers
         public async Task<ActionResult<IEnumerable<PackageModel>>> GetAll()
         {
             var productos = await _repo.GetAllAsync();
-            return Ok(productos);
+            var productosDTOs = productos.Select(p => p.ToPackageDTO());
+            return Ok(productosDTOs);
         }
 
         [HttpGet("{id}")]

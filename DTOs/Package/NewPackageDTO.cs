@@ -1,10 +1,7 @@
-using CargoTransAPISQL.DTOs.Vehicle;
-
 namespace CargoTransAPISQL.DTOs.Package
 {
-    public class PackageDTO
+    public class NewPackageDTO
     {
-        public int Id { get; set; }
         public string Sender { get; set; } = string.Empty;
         public string Recipient { get; set; } = string.Empty;
         public double Weight { get; set; }
@@ -15,8 +12,6 @@ namespace CargoTransAPISQL.DTOs.Package
         public DateTime ReceptionDate { get; set; }
         public double? LatitudeDestination { get; set; }
         public double? LongitudeDestination { get; set; }
-        public int? VehicleId { get; set; }
-        public VehicleDTO? VehicleData { get; set; }
-        public DateTime? DeliveryDate { get; set; }
+
     }
 }

@@ -16,7 +16,9 @@ namespace CargoTransAPISQL.Repositories
 
         public async Task<IEnumerable<PackageModel>> GetAllAsync()
         {
-            return await _context.Packages.ToListAsync();
+            return await _context.Packages
+                .Include(p => p.Vehicle)
+                .ToListAsync();
         }
 
         public async Task<PackageModel?> GetByIdAsync(int id)

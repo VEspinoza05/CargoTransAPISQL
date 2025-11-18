@@ -13,6 +13,7 @@ namespace CargoTransAPISQL.Data
         public DbSet<PurchaseModel> Purchases { get; set; }
         public DbSet<SupplierModel> Suppliers { get; set; }
         public DbSet<RoleModel> Roles { get; set; }
+        public DbSet<InvoiceModel> Invoices { get; set; }
         
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -43,6 +44,11 @@ namespace CargoTransAPISQL.Data
                 .HasOne(e => e.Role)
                 .WithMany(e => e.Employees)
                 .HasForeignKey(e => e.RoleId);
+
+            modelBuilder.Entity<InvoiceModel>()
+                .HasMany(e => e.Packages)
+                .WithOne(e => e.Invoice)
+                .HasForeignKey(e => e.InvoiceId);
 
             // Roles
             modelBuilder.Entity<RoleModel>().HasData(

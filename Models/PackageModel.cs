@@ -16,5 +16,7 @@ namespace CargoTransAPISQL.Models
         public DateTime? DeliveryDate { get; set; }
         public int? VehicleId { get; set; }
         public VehicleModel? Vehicle { get; set; } = null!;
+        public int InvoiceId { get; set; }
+        public InvoiceModel Invoice { get; set; } = null!;
     }
 }

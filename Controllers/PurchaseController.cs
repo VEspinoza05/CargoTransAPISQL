@@ -68,6 +68,26 @@ namespace CargoTransAPISQL.Controllers
             }
         }
 
+        [HttpPut("Review/{id}")]
+        public async Task<IActionResult> Review(int id, PurchaseRevisionDTO purchaseRevisionDTO)
+        {
+            var purchase = purchaseRevisionDTO.ToPurchaseFromRevisionDTO(id);
+            purchase.RevisionDate = DateTime.Now;
+
+            var result = await _repo.ReviewAsync(purchase);
+
+            Console.WriteLine(result.ToString());
+
+            if(result == null)
+            {
+                return NotFound("Purchase not found");
+            }
+            else
+            {
+                return Ok(result.ToPurchaseDTO());
+            }
+        }
+
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {

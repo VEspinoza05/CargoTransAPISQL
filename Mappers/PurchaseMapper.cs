@@ -53,5 +53,15 @@ namespace CargoTransAPISQL.Mappers
                 Total = updatePurchaseDTO.Total,
             };
         }
+
+        public static PurchaseModel ToPurchaseFromRevisionDTO(this PurchaseRevisionDTO purchaseRevisionDTO, int id)
+        {
+            return new PurchaseModel()
+            {
+                Id = id,
+                Status = purchaseRevisionDTO.Status,
+                RevisionDescription = purchaseRevisionDTO.RevisionDescription,
+            };
+        }
     }
 }

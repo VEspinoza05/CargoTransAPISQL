@@ -62,6 +62,30 @@ namespace CargoTransAPISQL.Repositories
                 .Include(p => p.Supplier)
                 .FirstOrDefaultAsync(p => p.Id == purchaseModel.Id);  ;
 
+
+            return updatedPurchase;
+        }
+
+        public async Task<PurchaseModel?> ReviewAsync(PurchaseModel purchaseModel)
+        {
+            var existingPurchase = await _context.Purchases.FindAsync(purchaseModel.Id);
+
+            if(existingPurchase == null)
+            {
+                return null;
+            }
+
+            existingPurchase.RevisionDate = purchaseModel.RevisionDate;
+            existingPurchase.RevisionDescription = purchaseModel.RevisionDescription;
+            existingPurchase.Status = purchaseModel.Status;
+
+            await _context.SaveChangesAsync();
+
+            var updatedPurchase = await _context.Purchases
+                .Include(p => p.Supplier)
+                .FirstOrDefaultAsync(p => p.Id == purchaseModel.Id);  ;
+
+
             return updatedPurchase;
         }
 
